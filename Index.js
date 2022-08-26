@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+
+require('dotenv').config()
 var bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -10,10 +11,10 @@ app.use(bodyParser.json());
 
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "",
-	database: "orgdb",
+	host: process.env.HOST,
+	user: process.env.USER_DB,
+	password: process.env.USER_PASS,
+	database: process.env.DB_NAME,
 });
 
 connection.connect();
@@ -35,6 +36,6 @@ app.post("/insertorg", (req, res) => {
 	);
 });
 
-app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`);
+app.listen(process.env.PORT, () => {
+	console.log(`App listening on port ${process.env.PORT}`);
 });
