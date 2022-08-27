@@ -30,6 +30,7 @@ app.get("/allorgs", (req, res) => {
 	connection.query("SELECT * FROM orgs",  (error, results)=> {
 		if(error){
 			console.log('error',error);
+			res.json({status:"500",message:"mysql error?",data:[]})
 			return;
 		}
 		if(!results){
