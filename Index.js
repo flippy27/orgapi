@@ -20,7 +20,11 @@ var connection = mysql.createConnection({
 connection.connect();
 
 app.get("/allorgs", (req, res) => {
-	connection.query("SELECT * FROM orgs", function (error, results) {
+	connection.query("SELECT * FROM orgs",  (error, results)=> {
+		if(error){
+			console.log('error',error);
+			return;
+		}
 		if(!results){
 			res.json({status:"204",message:"No data",data:[]})
 			return;
