@@ -22,7 +22,6 @@ client.connect();
 app.get("/allorgs", (req, res) => {
 	client.query("SELECT * FROM orgs", (error, results) => {
 		if (error) {
-			console.log("error", error);
 			res.json({
 				status: "500",
 				message: "postgres error?",
@@ -35,20 +34,8 @@ app.get("/allorgs", (req, res) => {
 			return;
 		}
 		res.json({ status: "200", message: "succesfull", data: results.rows });
-		client.end();
 	});
-	/* 	connection.query("SELECT * FROM orgs", (error, results) => {
-		if (error) {
-			console.log("error", error);
-			res.json({ status: "500", message: "mysql error?", data: error });
-			return;
-		}
-		if (!results) {
-			res.json({ status: "204", message: "No data", data: [] });
-			return;
-		}
-		res.json({ status: "200", message: "succesfull", data: results });
-	}); */
+	
 });
 app.post("/insertorg", (req, res) => {
 	let user = req.body.user;
