@@ -15,6 +15,7 @@ var connection = mysql.createConnection({
 	user: process.env.USER_DB,
 	password: process.env.USER_PASS,
 	database: process.env.DB_NAME,
+	port:process.env.DB_PORT
 });
 
 connection.connect();
