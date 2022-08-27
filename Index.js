@@ -21,8 +21,11 @@ connection.connect();
 
 app.get("/allorgs", (req, res) => {
 	connection.query("SELECT * FROM orgs", function (error, results) {
-		console.log(results);
-		res.json(results);
+		if(!results){
+			res.json({status:"204",message:"No data",data:[]})
+			return;
+		}
+		res.json({status:"200",message:"succesfull",data:results});
 	});
 });
 app.post("/insertorg", (req, res) => {
