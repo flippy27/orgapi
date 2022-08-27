@@ -18,7 +18,13 @@ var connection = mysql.createConnection({
 	port:process.env.DB_PORT
 });
 
-connection.connect();
+connection.connect(err=>{
+	if(err){
+		console.log('Error connecting db',err);
+		return;
+	}
+	console.log('DB Connected on:',process.env.HOST,"user:",process.env.USER_DB,"pass:",process.env.USER_PASS,"dbname:",process.env.DB_NAME,"port:",process.env.DB_PORT);
+});
 
 app.get("/allorgs", (req, res) => {
 	connection.query("SELECT * FROM orgs",  (error, results)=> {
