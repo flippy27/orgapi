@@ -21,6 +21,7 @@ connection.connect();
 
 app.get("/allorgs", (req, res) => {
 	connection.query("SELECT * FROM orgs", function (error, results) {
+		console.log(results);
 		res.json(results);
 	});
 });
