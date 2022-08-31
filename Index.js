@@ -39,6 +39,7 @@ app.get("/allorgs", (req, res) => {
 app.post("/insertorg", (req, res) => {
   let user = req.body.user;
   let created_at = req.body.created_at;
+  console.log('inserting',user,created_at);
   client.query(
     "INSERT INTO orgs (user_name,created_at) VALUES ( '" + user + "','" + created_at + "' ) ",
     (error, results) => {
@@ -52,9 +53,11 @@ app.post("/insertorg", (req, res) => {
 });
 app.post("/deleteorg", (req, res) => {
   let id = req.body.item_id;
+  console.log('id',id);
   client.query(
-    "DELETE * FROM orgs WHERE id = " + id,
+    "DELETE FROM orgs WHERE id = " + id,
     (error, results) => {
+      console.log();
       if (error) {
         res.json({ status: "500", message: "postgres error?", data: error });
         return;
