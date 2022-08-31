@@ -20,7 +20,7 @@ const client = new Client({
 client.connect();
 
 app.get("/allorgs", (req, res) => {
-  client.query("SELECT * FROM orgs", (error, results) => {
+  client.query("SELECT * FROM orgs oo ORDER BY oo.created_at asc", (error, results) => {
     if (error) {
       res.json({
         status: "500",
