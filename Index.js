@@ -50,6 +50,19 @@ app.post("/insertorg", (req, res) => {
     }
   );
 });
+app.post("/deleteorg", (req, res) => {
+  let id = req.body.item_id;
+  client.query(
+    "DELETE * FROM orgs WHERE id = " + id,
+    (error, results) => {
+      if (error) {
+        res.json({ status: "500", message: "postgres error?", data: error });
+        return;
+      }
+      res.json({ status: "200", message: "succesfull", data: { results } });
+    }
+  );
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`App listening on port ${process.env.PORT}`);
