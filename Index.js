@@ -57,9 +57,9 @@ app.post("/insertorg", (req, res) => {
   let user = req.body.user;
   let created_at = req.body.created_at;
   let type = req.body.type;
-  console.log('inserting',user,created_at);
+  console.log('inserting',user,created_at,type);
   client.query(
-    "INSERT INTO orgs (user_name,created_at) VALUES ( '" + user + "','" + created_at + "', "+ type +" ) ",
+    "INSERT INTO orgs (user_name,created_at,type_id) VALUES ( '" + user + "','" + created_at + "', "+ type +" ) ",
     (error, results) => {
       if (error) {
         res.json({ status: "500", message: "postgres error?", data: error });
