@@ -80,6 +80,7 @@ app.post("/deleteorg", (req, res) => {
         res.json({ status: "500", message: "postgres error?", data: error });
         return;
       }
+      
       res.json({ status: "200", message: "succesfull", data: { results } });
     }
   );
